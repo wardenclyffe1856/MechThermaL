@@ -109,6 +109,7 @@ const double MIN_BOXEL_SIZE=		0.01;		//The minimal size of a boxel (m).
     {
 //		return(boxel[boxel_number_x][boxel_number_y][boxel_number_z].GET_energy());
 		//TODO: make new get_energy
+		return 0;
     }
 
     double blmcbd::GET_boxel_area_environment(int boxel_number_x, int boxel_number_y, int boxel_number_z)
