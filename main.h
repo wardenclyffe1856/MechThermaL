@@ -1,3 +1,6 @@
+#ifndef _MAIN_H_
+#define _MAIN_H_
+
 #include <vector>
 #include <string>
 
@@ -121,3 +124,8 @@ public:
 	double GET_environment_temperature(void);
 };
 }
+<<<<<<< HEAD
+=======
+
+#endif
+>>>>>>> c028b56f126d7c54a81fa310e03070f71b40909a
