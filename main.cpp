@@ -20,6 +20,21 @@ const double MIN_BOXEL_SIZE =		0.01;		//The minimal size of a boxel (m).
 		energy = new_energy;
 	}
 
+    double blmcbx::GET_temperature(void)
+	{
+		return(temperature);
+	}
+
+    void blmcbx::SET_temperature(double new_temperature)
+	{
+		temperature=new_temperature;
+	}
+
+    double blmcbx::GET_energy(void)
+    {
+        return(energy);
+    }
+
 	//To set a state of a boxel.
 	void blmcbx::SET_state(bool new_solid)
 	{
@@ -108,10 +123,15 @@ const double MIN_BOXEL_SIZE =		0.01;		//The minimal size of a boxel (m).
 
     double blmcbd::GET_boxel_temperature(int boxel_number_x, int boxel_number_y, int boxel_number_z)
     {
-//		return(boxel[boxel_number_x][boxel_number_y][boxel_number_z].GET_energy());
+        return(boxel[boxel_number_x][boxel_number_y][boxel_number_z].GET_temperature());
 		//TODO: make new get_energy
-		return(0);
+		//return(0);
     }
+    void blmcbd::SET_boxel_temperature(int boxel_number_x, int boxel_number_y, int boxel_number_z, double new_temperature)
+    {
+        boxel[boxel_number_x][boxel_number_y][boxel_number_z].SET_temperature(new_temperature);
+    }
+
 
     double blmcbd::GET_boxel_area_environment(int boxel_number_x, int boxel_number_y, int boxel_number_z)
 	{
@@ -207,6 +227,11 @@ int Body_list_manipulator::GET_body_number_boxels_z(int body_number)
 double Body_list_manipulator::GET_body_boxel_temperature(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z)
 {
 	return(body[body_number].GET_boxel_temperature(boxel_number_x, boxel_number_y, boxel_number_z));
+}
+
+void Body_list_manipulator::SET_body_boxel_temperature(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, double new_temperature)
+{
+    body[body_number].SET_boxel_temperature(boxel_number_x, boxel_number_y, boxel_number_z, new_temperature);
 }
 
 int Body_list_manipulator::GET_count_bodies()

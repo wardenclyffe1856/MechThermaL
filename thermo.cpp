@@ -67,14 +67,13 @@ void MTL::Thermal_processor::DO_body_interaction_with_environment(int body_numbe
 						blm->GET_body_boxel_mass(body_number)) / (blm->GET_body_boxel_mass(body_number) *
 						sm->GET_substance_specific_heat_liquid(blm->GET_body_substance(body_number)));
 				}
-				//blm->SET_body_boxel_temperature(body_number, i, j, g);
+				blm->SET_body_boxel_temperature(body_number, i, j, g, new_temperature);
 			}
 }
 
 void MTL::Thermal_processor::DO_body_interaction_inside(int body_number)
 {
 	Body_list_manipulator* blm = MW->GET_body_list_manipulator();
-    //Environment_manipulator* em = MW->GET_environment_manipulator();
     Substance_manipulator* sm = MW->GET_substance_manipulator();
 	double middle_energy = 0.0;
 	for(int i = 0; i < blm->GET_body_number_boxels_x(body_number); i++)
@@ -116,6 +115,6 @@ void MTL::Thermal_processor::DO_body_interaction_inside(int body_number)
 							blm->GET_body_boxel_mass(body_number)) / (blm->GET_body_boxel_mass(body_number) *
 							sm->GET_substance_specific_heat_liquid(blm->GET_body_substance(body_number)));
 					}
-					//blm->SET_body_boxel_temperature(body_number, i, j, g);
+					blm->SET_body_boxel_temperature(body_number, i, j, g, new_temperature);
 				}
 }

@@ -22,6 +22,7 @@ public:
 	int GET_body_number_boxels_y(int body_number);
 	int GET_body_number_boxels_z(int body_number);
 	double GET_body_boxel_temperature(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z);
+    void SET_body_boxel_temperature(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, double new_temperature); 
     double GET_body_boxel_energy(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z);
     int GET_body_substance(int body_number);
     double GET_body_boxel_area_environment(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z);
@@ -33,18 +34,23 @@ public:
 
 class Body_list_manipulator::c_boxel {
 private:
-    double energy;             //Temperature of a boxel (C).
+    double energy;             
+    double temperature;                 //Temperature of a boxel (C).
     bool is_solid;						//State of a boxel (solid/liquid).
 public:
 
 	//To set a new temperature.
-	void SET_energy(double new_temperature);
+	void SET_energy(double new_energy);
 
 	//To set a state of a boxel.
 	void SET_state(bool new_solid);
 
+    void SET_temperature(double new_temperature);
+
 	//To get energy
 	double GET_energy(void);
+
+    double GET_temperature(void);
 
 	bool GET_state(void);
 
@@ -101,6 +107,7 @@ public:
     int GET_number_boxels_z(void);
 
     double GET_boxel_temperature(int boxel_number_x, int boxel_number_y, int boxel_number_z);
+    void SET_boxel_temperature(int boxel_number_x, int boxel_number_y, int boxel_number_z, double new_temperature);
 
     double GET_boxel_area_environment(int boxel_number_x, int boxel_number_y, int boxel_number_z);
 
