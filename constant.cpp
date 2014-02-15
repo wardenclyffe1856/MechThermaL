@@ -2,7 +2,7 @@
 
 using MTL::Constants;
 
-const double Constants::g =					   9.81;
+const double Constants::g =                    9.81;
 const double Constants::g_earth=               9.81;
 const double Constants::g_mercury=             3.7;
 const double Constants::g_venus=               8.8;

@@ -10,7 +10,7 @@ using std::string;
 using std::vector;
 using std::ifstream;
 
-const string FILE_SUBSTANCES=           "data/substances.data";     //Substances data file.
+const string FILE_SUBSTANCES =           "data/substances.data";     //Substances data file.
 
 	//To set all parameters of a substance.
     void c_substance::SET_all(string new_name, double new_density_solid, double new_specific_heat_solid, double new_density_liquid,
@@ -18,17 +18,17 @@ const string FILE_SUBSTANCES=           "data/substances.data";     //Substances
         double new_crystallization_temperature, double new_vaporization_temperature,
         double new_specific_crystallization_heat, double new_specific_vaporization_heat)
     {
-        name=new_name;
-        density_solid=new_density_solid;
-        specific_heat_solid=new_specific_heat_solid;
-        density_liquid=new_density_liquid;
-        specific_heat_liquid=new_specific_heat_liquid;
-		density_gas=new_density_gas;
-        specific_heat_gas=new_specific_heat_gas;
-        crystallization_temperature=new_crystallization_temperature;
-        vaporization_temperature=new_vaporization_temperature;
-        specific_crystallization_heat=new_specific_crystallization_heat;
-        specific_vaporization_heat=new_specific_vaporization_heat;
+        name = new_name;
+        density_solid = new_density_solid;
+        specific_heat_solid = new_specific_heat_solid;
+        density_liquid = new_density_liquid;
+        specific_heat_liquid = new_specific_heat_liquid;
+		density_gas = new_density_gas;
+        specific_heat_gas = new_specific_heat_gas;
+        crystallization_temperature = new_crystallization_temperature;
+        vaporization_temperature = new_vaporization_temperature;
+        specific_crystallization_heat = new_specific_crystallization_heat;
+        specific_vaporization_heat = new_specific_vaporization_heat;
     }
 
 	//To get a name of a substance.
@@ -62,9 +62,11 @@ void MTL::DO_load_substances(void)
     double temp_specific_crystallization_heat;
     double temp_specific_vaporization_heat;
     c_substance temp_substance;
-    while(f_substances>>temp_name>>temp_density_solid>>temp_specific_heat_solid>>temp_density_liquid
-			>>temp_specific_heat_liquid>>temp_density_gas>>temp_specific_heat_gas>>temp_crystallization_temperature
-			>>temp_vaporization_temperature>>temp_specific_crystallization_heat>>temp_specific_vaporization_heat)
+    while(f_substances >> temp_name >> temp_density_solid >> temp_specific_heat_solid
+            >> temp_density_liquid >> temp_specific_heat_liquid >> temp_density_gas
+            >> temp_specific_heat_gas >> temp_crystallization_temperature
+			>> temp_vaporization_temperature >> temp_specific_crystallization_heat
+            >> temp_specific_vaporization_heat)
     {
         temp_substance.SET_all(temp_name, temp_density_solid, temp_specific_heat_solid, temp_density_liquid,
             temp_specific_heat_liquid, temp_density_gas, temp_specific_heat_gas, temp_crystallization_temperature,
@@ -77,8 +79,9 @@ void MTL::DO_load_substances(void)
 //To get a number of a substance.
 int GET_substance_number(string name)
 {
-	for(int i=0; i<(int)substance.size(); i++)
-        if(name==substance[i].GET_name())   return(i);
+	for (int i = 0; i < (int)substance.size(); i++)
+        if (name == substance[i].GET_name())
+            return(i);
     return 0;
 }
 
