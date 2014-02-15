@@ -1,3 +1,6 @@
+#ifndef _DATA_H_
+#define _DATA_H_
+
 #include <string>
 
 using std::string;
@@ -33,3 +36,5 @@ public:
 	//To get a density of a substance in the solid stante.
     double GET_density_solid(void);
 };
+
+#endif

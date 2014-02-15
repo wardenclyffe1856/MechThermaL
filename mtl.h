@@ -1,4 +1,9 @@
-#include <string>
+#ifndef _MTL_H_
+#define _MTL_H_
+#include "constant.h"
+#include "data.h"
+#include "main.h"
+
 
 namespace MTL
 {
@@ -6,3 +11,5 @@ namespace MTL
 	void Test(void);
 
 }
+
+#endif
