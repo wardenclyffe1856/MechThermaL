@@ -1,10 +1,6 @@
-#include "main.h"
-#include "constant.h"
-#include "thermo.h"
+#include "mtl.h"
 
 extern MTL::MainWorker* MW;
-
-//using MTL::Thermal_processor;
 
 void MTL::Thermal_processor::DO_body_interaction_with_environment(int body_number)
 {

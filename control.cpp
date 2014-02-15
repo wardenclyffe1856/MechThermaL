@@ -48,5 +48,5 @@ void MTL::DO_body_interaction_inside(int body_number)
 
 int MTL::GET_count_bodies()
 {
-    MW->GET_body_list_manipulator()->GET_count_bodies();
+    return MW->GET_body_list_manipulator()->GET_count_bodies();
 }
