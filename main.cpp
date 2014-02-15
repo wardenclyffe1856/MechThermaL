@@ -1,5 +1,4 @@
 #include "main.h"
-#include "data.h"
 
 #include <vector>
 #include <string>
@@ -10,6 +9,8 @@
 using std::vector;
 using std::string;
 using namespace MTL;
+
+extern MainWorker* MW;
 
 const double MIN_BOXEL_SIZE =		0.01;		//The minimal size of a boxel (m).
 
@@ -57,7 +58,7 @@ const double MIN_BOXEL_SIZE =		0.01;		//The minimal size of a boxel (m).
     //To set a substance.
     void blmcbd::SET_substance(string new_substance_name)
     {
-		substance = GET_substance_number(new_substance_name);
+        substance = MW->GET_substance_manipulator()->GET_substance_number(new_substance_name);
     }
 
 	//To set all parameters of a body.
@@ -70,14 +71,14 @@ const double MIN_BOXEL_SIZE =		0.01;		//The minimal size of a boxel (m).
 		SET_size(new_size_x, new_size_y, new_size_z);
 		SET_substance(new_substance_name);
 
-		mass = size_x * size_y * size_z * GET_substance_density_solid(substance);
+		mass = size_x * size_y * size_z * MW->GET_substance_manipulator()->GET_substance_density_solid(substance);
 		number_boxels_x = (int) (size_x / MIN_BOXEL_SIZE);
 		number_boxels_y = (int) (size_y / MIN_BOXEL_SIZE);
 		number_boxels_z = (int) (size_z / MIN_BOXEL_SIZE);
 		boxel_size_x = size_x / number_boxels_x;
 		boxel_size_y = size_y / number_boxels_y;
 		boxel_size_z = size_z / number_boxels_z;
-		boxel_mass = boxel_size_x * boxel_size_y * boxel_size_z * GET_substance_density_solid(substance);
+		boxel_mass = boxel_size_x * boxel_size_y * boxel_size_z * MW->GET_substance_manipulator()->GET_substance_density_solid(substance);
 		c_boxel temp_boxel;
 		temp_boxel.SET_energy(new_temperature);
 		temp_boxel.SET_state(new_solid);
@@ -158,7 +159,7 @@ void Body_list_manipulator::DO_add_body(string new_name, double new_position_z, 
 		//To set all parametres of environment.
 		void Environment_manipulator::c_environment::SET_all(string new_substance_name, double new_temperature)
 		{
-			substance = GET_substance_number(new_substance_name);
+			substance = MW->GET_substance_manipulator()->GET_substance_number(new_substance_name);
 			temperature = new_temperature;
 		}
 
@@ -206,3 +207,135 @@ double Body_list_manipulator::GET_body_boxel_temperature(int body_number, int bo
 {
 	return(body[body_number].GET_boxel_temperature(boxel_number_x, boxel_number_y, boxel_number_z));
 }
+MainWorker::MainWorker()
+{
+    this->BLM = new Body_list_manipulator();
+    this->EM = new Environment_manipulator();
+    this->SM = new Substance_manipulator();
+}
+
+void MainWorker::DO_load_substances()
+{
+    this->SM->DO_load_substances();
+}
+
+Body_list_manipulator* MainWorker::GET_body_list_manipulator()
+{
+    return this->BLM;
+}
+
+Environment_manipulator* MainWorker::GET_environment_manipulator()
+{
+    return this->EM;
+}
+
+Substance_manipulator* MainWorker::GET_substance_manipulator()
+{
+    return this->SM;
+}
+
+
+	
+
+    double Body_list_manipulator::GET_body_boxel_energy(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z)
+    {
+            return(body[body_number].GET_boxel_energy(boxel_number_x, boxel_number_y, boxel_number_z));
+    }
+     
+    int Body_list_manipulator::GET_body_substance(int body_number)
+    {
+            return(body[body_number].GET_substance());
+    }
+     
+    double Body_list_manipulator::GET_body_boxel_area_environment(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z)
+    {
+            return(body[body_number].GET_boxel_area_environment(boxel_number_x, boxel_number_y, boxel_number_z));
+    }
+     
+    double Body_list_manipulator::GET_body_boxel_mass(int body_number)
+    {
+            return(body[body_number].GET_boxel_mass());
+    }
+     
+    void Body_list_manipulator::DO_body_boxel_change_energy(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, double change_energy)
+    {
+            body[body_number].DO_boxel_change_energy(boxel_number_x, boxel_number_y, boxel_number_z, change_energy);
+    }
+
+
+
+    	
+
+    double Body_list_manipulator::c_body::GET_boxel_energy(int boxel_number_x, int boxel_number_y, int boxel_number_z)
+            {
+                    return(boxel[boxel_number_x][boxel_number_y][boxel_number_z].GET_energy());
+            }
+     
+            double Body_list_manipulator::c_body::GET_boxel_mass(void)
+            {
+                    return(boxel_mass);
+            }
+     
+            int Body_list_manipulator::c_body::GET_substance(void)
+            {
+                    return(substance);
+            }
+     
+            void Body_list_manipulator::c_body::DO_boxel_change_energy(int boxel_number_x, int boxel_number_y, int boxel_number_z, double change_energy)
+            {
+                    boxel[boxel_number_x][boxel_number_y][boxel_number_z].DO_change_energy(change_energy);
+            }
+            void Body_list_manipulator::c_boxel::DO_change_energy(double change_energy)
+            {
+                energy += change_energy;
+            }
+
+            	
+
+    double Substance_manipulator::GET_substance_specific_heat_solid(int substance_number)
+    {
+            return(substance[substance_number].GET_specific_heat_solid());
+    }
+     
+    double Substance_manipulator::GET_substance_crystallization_temperature(int substance_number)
+    {
+            return(substance[substance_number].GET_crystallization_temperature());
+    }
+     
+    double Substance_manipulator::GET_substance_specific_crystallization_heat(int substance_number)
+    {
+            return(substance[substance_number].GET_specific_crystallization_heat());
+    }
+     
+    double Substance_manipulator::GET_substance_vaporization_temperature(int substance_number)
+    {
+            return(substance[substance_number].GET_vaporization_temperature());
+    }
+     
+    int Substance_manipulator::GET_number_substances(void)
+    {
+            return((int)substance.size());
+    }
+     
+    double Substance_manipulator::GET_substance_specific_heat_liquid(int substance_number)
+    {
+            return(substance[substance_number].GET_specific_heat_liquid());
+    }
+
+
+ 
+    double Substance_manipulator::c_substance::GET_crystallization_temperature(void)
+    {
+                return(crystallization_temperature);
+    }
+ 
+    double Substance_manipulator::c_substance::GET_specific_crystallization_heat(void)
+    {
+                return(specific_crystallization_heat);
+    }
+ 
+    double Substance_manipulator::c_substance::GET_vaporization_temperature(void)
+    {
+                return(vaporization_temperature);
+    }
+///

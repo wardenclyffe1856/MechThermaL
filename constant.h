@@ -15,6 +15,8 @@ public:
 	static const double g_uranus;
 	static const double g_neptune;
 	static const double g_sun;
+    static const double thermal_coefficient_1;
+    static const double thermal_coefficient_2;
 };
 
 }

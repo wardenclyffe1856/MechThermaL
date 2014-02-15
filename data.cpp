@@ -1,6 +1,6 @@
 #include "mtl.h"
 
-#include "data.h"
+#include "main.h"
 
 #include <string>
 #include <vector>
@@ -9,11 +9,12 @@
 using std::string;
 using std::vector;
 using std::ifstream;
+using MTL::Substance_manipulator;
 
 const string FILE_SUBSTANCES =           "data/substances.data";     //Substances data file.
 
 	//To set all parameters of a substance.
-    void c_substance::SET_all(string new_name, double new_density_solid, double new_specific_heat_solid, double new_density_liquid,
+    void Substance_manipulator::c_substance::SET_all(string new_name, double new_density_solid, double new_specific_heat_solid, double new_density_liquid,
         double new_specific_heat_liquid, double new_density_gas, double new_specific_heat_gas,
         double new_crystallization_temperature, double new_vaporization_temperature,
         double new_specific_crystallization_heat, double new_specific_vaporization_heat)
@@ -32,21 +33,21 @@ const string FILE_SUBSTANCES =           "data/substances.data";     //Substance
     }
 
 	//To get a name of a substance.
-    string c_substance::GET_name(void)
+    string Substance_manipulator::c_substance::GET_name(void)
     {
         return(name);
     }
 
 	//To get a density of a substance in the solid stante.
-    double c_substance::GET_density_solid(void)
+    double Substance_manipulator::c_substance::GET_density_solid(void)
     {
         return(density_solid);
     }
 
-vector<c_substance> substance;			//List of substances.
+
 
 //To load parameters of all substances.
-void MTL::DO_load_substances(void)
+void Substance_manipulator::DO_load_substances(void)
 {
     ifstream f_substances(FILE_SUBSTANCES.c_str());
 
@@ -77,7 +78,7 @@ void MTL::DO_load_substances(void)
 }
 
 //To get a number of a substance.
-int GET_substance_number(string name)
+int Substance_manipulator::GET_substance_number(string name)
 {
 	for (int i = 0; i < (int)substance.size(); i++)
         if (name == substance[i].GET_name())
@@ -86,7 +87,7 @@ int GET_substance_number(string name)
 }
 
 //To get a density of a substance in the solid state.
-double GET_substance_density_solid(int substance_number)
+double Substance_manipulator::GET_substance_density_solid(int substance_number)
 {
 	return(substance[substance_number].GET_density_solid());
 }
