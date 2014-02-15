@@ -1,6 +1,6 @@
-void DO_load_substances(...)
-void DO_add_body(...)
-void (environment_manip) ::SET_all(...)
-DO_body_interaction_body_with_environment(...)
-
-int GET_cout_bodies()
+void DO_load_substances(...)						[X]
+int DO_add_body(...)								[X]
+void (environment_manip) ::SET_all(...)				[X]
+DO_body_interaction_with_environment(...)			[X]
+void DO_body_interaction_inside(int body_number)    [X]
+int GET_count_bodies()								[X]

@@ -1,6 +1,9 @@
 #include "main.h"
+<<<<<<< HEAD
 #include "constant.h"
 #include "thermo.h"
+=======
+>>>>>>> 47efd5adbe92181de7beca80ee4fffa6e1219e74
 
 extern MTL::MainWorker* MW;
 

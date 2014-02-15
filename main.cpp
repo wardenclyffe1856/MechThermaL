@@ -1,4 +1,4 @@
-#include "main.h"
+#include "mtl.h"
 
 #include <vector>
 #include <string>
@@ -142,21 +142,22 @@ const double MIN_BOXEL_SIZE =		0.01;		//The minimal size of a boxel (m).
 //**************************************Body list manipulations********************************************************
 
 //To add a body to the list of bodies.
-void Body_list_manipulator::DO_add_body(string new_name, double new_position_z, double new_position_y, double new_position_x,
+int Body_list_manipulator::DO_add_body(string new_name, double new_position_x, double new_position_y, double new_position_z,
 	double new_size_x, double new_size_y, double new_size_z, string new_substance_name, double new_temperature,
 	bool new_solid)
 {
 	c_body temp_body;
-	temp_body.SET_all(new_name, new_position_z, new_position_y, new_position_x, new_size_x, new_size_y,
+	temp_body.SET_all(new_name, new_position_x, new_position_y, new_position_z, new_size_x, new_size_y,
 		new_size_z, new_substance_name, new_temperature, new_solid);
 	body.push_back(temp_body);
+    return (int)(body.size()) - 1;
 }
 
 //*********************************************************************************************************************
 
 //**************************************Environment manipulations******************************************************
 
-		//To set all parametres of environment.
+		//To set all parameters of environment.
 		void Environment_manipulator::c_environment::SET_all(string new_substance_name, double new_temperature)
 		{
 			substance = MW->GET_substance_manipulator()->GET_substance_number(new_substance_name);
@@ -171,8 +172,8 @@ void Body_list_manipulator::DO_add_body(string new_name, double new_position_z, 
 
 
 
-//To set all parametres of environment.
-void Environment_manipulator::SET_environment_parametres(string new_substance, double new_temperature)
+//To set all parameters of environment.
+void Environment_manipulator::SET_environment_parameters(string new_substance, double new_temperature)
 {
 	environment.SET_all(new_substance, new_temperature);
 }
@@ -207,6 +208,14 @@ double Body_list_manipulator::GET_body_boxel_temperature(int body_number, int bo
 {
 	return(body[body_number].GET_boxel_temperature(boxel_number_x, boxel_number_y, boxel_number_z));
 }
+
+int Body_list_manipulator::GET_count_bodies()
+{
+    return body.size();
+}
+
+
+
 MainWorker::MainWorker()
 {
     this->BLM = new Body_list_manipulator();
