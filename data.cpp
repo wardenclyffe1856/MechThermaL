@@ -1,7 +1,5 @@
 #include "mtl.h"
 
-#include "main.h"
-
 #include <string>
 #include <vector>
 #include <fstream>

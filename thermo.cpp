@@ -1,5 +1,4 @@
 #include "main.h"
-#include "constant.h"
 
 extern MTL::MainWorker* MW;
 

@@ -14,10 +14,10 @@ private:
 	class c_boxel;
 	vector<c_body> body; //The list of bodies.
 public:
-	void DO_add_body(string new_name, double new_position_z, double new_position_y, double new_position_x,
+	int DO_add_body(string new_name, double new_position_x, double new_position_y, double new_position_z,
 	double new_size_x, double new_size_y, double new_size_z, string new_substance_name, double new_temperature,
 	bool new_solid);
-	void DO_delete_body(string body_name);
+	void DO_delete_body(string body_name); //TODO: add implementation of void DO_delete_body(string)
 	int GET_body_number_boxels_x(int body_number);
 	int GET_body_number_boxels_y(int body_number);
 	int GET_body_number_boxels_z(int body_number);
@@ -27,7 +27,7 @@ public:
     double GET_body_boxel_area_environment(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z);
     double GET_body_boxel_mass(int body_number);
     void DO_body_boxel_change_energy(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, double change_energy);
-    
+    int GET_count_bodies();
 };
 
 
@@ -129,7 +129,7 @@ class c_environment{
 	};
 	c_environment environment;
 public:
-	void SET_environment_parametres(string new_substance, double new_temperature);
+	void SET_environment_parameters(string new_substance, double new_temperature);
 	double GET_environment_temperature(void);
 };
 
