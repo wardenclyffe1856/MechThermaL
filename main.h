@@ -16,7 +16,7 @@ public:
 	double new_size_x, double new_size_y, double new_size_z, string new_substance_name, double new_temperature,
 	bool new_solid);
 	void DO_delete_body(string body_name);
-	int GET_body_number_boxels_x(int body_number);
+	static int GET_body_number_boxels_x(int body_number);
 	int GET_body_number_boxels_y(int body_number);
 	int GET_body_number_boxels_z(int body_number);
 	double GET_body_boxel_temperature(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z);
@@ -100,7 +100,7 @@ public:
 
 
 
-class Environment_manipulator 
+class Environment_manipulator
 {
 private:
 	class c_environment{
