@@ -380,4 +380,3 @@ Substance_manipulator* MainWorker::GET_substance_manipulator()
     {
                 return(vaporization_temperature);
     }
-///
