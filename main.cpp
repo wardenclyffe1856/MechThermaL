@@ -356,8 +356,16 @@ Substance_manipulator* MainWorker::GET_substance_manipulator()
             return(substance[substance_number].GET_specific_heat_liquid());
     }
 
-
+    double Substance_manipulator::c_substance::GET_specific_heat_solid(void)
+    {
+        return specific_heat_solid;
+    }
  
+    double Substance_manipulator::c_substance::GET_specific_heat_liquid(void)
+    {
+        return specific_heat_liquid;
+    }
+
     double Substance_manipulator::c_substance::GET_crystallization_temperature(void)
     {
                 return(crystallization_temperature);
