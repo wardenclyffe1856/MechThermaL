@@ -1,8 +1,8 @@
 #include "mtl.h"
 
-extern MTL::MainWorker* MW;
+extern MTL::details::MainWorker* MW;
 
-void MTL::Thermal_processor::DO_body_interaction_with_environment(int body_number)
+void MTL::details::Thermal_processor::DO_body_interaction_with_environment(int body_number)
 {
     Body_list_manipulator* blm = MW->GET_body_list_manipulator();
     Environment_manipulator* em = MW->GET_environment_manipulator();
@@ -68,7 +68,7 @@ void MTL::Thermal_processor::DO_body_interaction_with_environment(int body_numbe
 			}
 }
 
-void MTL::Thermal_processor::DO_body_interaction_inside(int body_number)
+void MTL::details::Thermal_processor::DO_body_interaction_inside(int body_number)
 {
 	Body_list_manipulator* blm = MW->GET_body_list_manipulator();
     Substance_manipulator* sm = MW->GET_substance_manipulator();
@@ -114,4 +114,25 @@ void MTL::Thermal_processor::DO_body_interaction_inside(int body_number)
 					}
 					blm->SET_body_boxel_temperature(body_number, i, j, g, new_temperature);
 				}
+}
+
+void MTL::details::Thermal_processor::DO_body_refresh_state(int body_number)
+{
+	Body_list_manipulator* blm = MW->GET_body_list_manipulator();
+    Substance_manipulator* sm = MW->GET_substance_manipulator();
+	for (int i = 0; i < blm->GET_body_number_boxels_x(body_number); i++)
+		for (int j = 0; j < blm->GET_body_number_boxels_y(body_number); j++)
+			for (int g = 0; g < blm->GET_body_number_boxels_z(body_number); g++)
+			{
+				double energy_point_1 = blm->GET_body_boxel_mass(body_number) *
+					sm->GET_substance_specific_crystallization_heat(body_number);
+				if (blm->GET_body_boxel_energy(body_number, i, j, g) < energy_point_1)
+				{
+					blm->SET_body_boxel_state(body_number, i, j, g, true);
+				}
+				else
+				{
+					blm->SET_body_boxel_state(body_number, i, j, g, true);
+				}
+			}
 }

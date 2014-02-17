@@ -7,7 +7,7 @@
 using std::string;
 using std::vector;
 using std::ifstream;
-using MTL::Substance_manipulator;
+using MTL::details::Substance_manipulator;
 
 const string FILE_SUBSTANCES =           "data/substances.data";     //Substances data file.
 

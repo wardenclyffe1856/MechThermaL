@@ -8,6 +8,10 @@ using std::vector;
 using std::string;
 
 namespace MTL {
+
+
+namespace details {
+
 class Body_list_manipulator {
 private:
 	class c_body;
@@ -22,11 +26,13 @@ public:
 	int GET_body_number_boxels_y(int body_number);
 	int GET_body_number_boxels_z(int body_number);
 	double GET_body_boxel_temperature(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z);
-    void SET_body_boxel_temperature(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, double new_temperature); 
+	bool GET_body_boxel_state(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z);
+    void SET_body_boxel_temperature(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, double new_temperature);
     double GET_body_boxel_energy(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z);
     int GET_body_substance(int body_number);
     double GET_body_boxel_area_environment(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z);
     double GET_body_boxel_mass(int body_number);
+    void SET_body_boxel_state(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, bool new_is_solid);
     void DO_body_boxel_change_energy(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, double change_energy);
     int GET_count_bodies();
 };
@@ -34,7 +40,7 @@ public:
 
 class Body_list_manipulator::c_boxel {
 private:
-    double energy;             
+    double energy;
     double temperature;                 //Temperature of a boxel (C).
     bool is_solid;						//State of a boxel (solid/liquid).
 public:
@@ -110,7 +116,8 @@ public:
     void SET_boxel_temperature(int boxel_number_x, int boxel_number_y, int boxel_number_z, double new_temperature);
 
     double GET_boxel_area_environment(int boxel_number_x, int boxel_number_y, int boxel_number_z);
-
+    bool GET_boxel_state(int boxel_number_x, int boxel_number_y, int boxel_number_z);
+    void SET_boxel_state(int boxel_number_x, int boxel_number_y, int boxel_number_z, bool new_is_solid);
     double GET_boxel_energy(int boxel_number_x, int boxel_number_y, int boxel_number_z);
     double GET_boxel_mass(void);
     int GET_substance(void);
@@ -170,7 +177,7 @@ private:
     double specific_crystallization_heat;		//A specific crystallization heat of a substance.
     double specific_vaporization_heat;			//A specific vaponization heat of a substance.
 public:
-    
+
 	//To set all parameters of a substance.
     void SET_all(string new_name, double new_density_solid, double new_specific_heat_solid, double new_density_liquid,
         double new_specific_heat_liquid, double new_density_gas, double new_specific_heat_gas,
@@ -202,6 +209,8 @@ public:
     Environment_manipulator* GET_environment_manipulator();
     Substance_manipulator* GET_substance_manipulator();
 };
+
+}
 
 }
 

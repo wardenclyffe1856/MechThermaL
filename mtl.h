@@ -7,7 +7,7 @@
 
 namespace MTL
 {
-    #define DO_LoadSubstances DO_load_substances 
+    #define DO_LoadSubstances DO_load_substances
     #define DO_Test DO_test
     #define DO_Init DO_init
     #define DO_AddBody DO_add_body
@@ -22,6 +22,8 @@ namespace MTL
     void DO_body_interaction_with_environment(int body_number);
     void DO_body_interaction_inside(int body_number);
     int GET_count_bodies();
+    vector<vector<vector<bool> > > GET_body_state(int body_number);
+    void DO_body_refresh_state(int body_number);
 }
 
-#endif
+#endif //_MTL_H_
