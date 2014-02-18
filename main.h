@@ -35,6 +35,12 @@ public:
     void SET_body_boxel_state(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, bool new_is_solid);
     void DO_body_boxel_change_energy(int body_number, int boxel_number_x, int boxel_number_y, int boxel_number_z, double change_energy);
     int GET_count_bodies();
+    double GET_body_position_x(int body_number);
+    double GET_body_position_y(int body_number);
+    double GET_body_position_z(int body_number);
+    double GET_body_boxel_size_x(int boxel_number);
+    double GET_body_boxel_size_y(int boxel_number);
+    double GET_body_boxel_size_z(int boxel_number);
 };
 
 
@@ -122,7 +128,12 @@ public:
     double GET_boxel_mass(void);
     int GET_substance(void);
     void DO_boxel_change_energy(int boxel_number_x, int boxel_number_y, int boxel_number_z, double change_energy);
-
+    double GET_position_x(void);
+    double GET_position_y(void);
+    double GET_position_z(void);
+    double GET_boxel_size_x(void);
+    double GET_boxel_size_y(void);
+    double GET_boxel_size_z(void);
 };
 
 

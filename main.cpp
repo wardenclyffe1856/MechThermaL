@@ -199,6 +199,37 @@ const double MIN_BOXEL_SIZE =		0.001;		//The minimal size of a boxel (m).
 		return(temp_area);
 	}
 
+	double blmcbd::GET_position_x(void)
+	{
+		return position_x;
+	}
+
+    double blmcbd::GET_position_y(void)
+    {
+		return position_y;
+    }
+
+    double blmcbd::GET_position_z(void)
+    {
+		return position_z;
+    }
+
+    double blmcbd::GET_boxel_size_x(void)
+    {
+		return boxel_size_x;
+    }
+
+    double blmcbd::GET_boxel_size_y(void)
+    {
+		return boxel_size_y;
+    }
+
+    double blmcbd::GET_boxel_size_z(void)
+    {
+		return boxel_size_z;
+    }
+
+
 //**************************************Body list manipulations********************************************************
 
 //To add a body to the list of bodies.
@@ -286,9 +317,38 @@ void details::Body_list_manipulator::SET_body_boxel_temperature(int body_number,
 
 int details::Body_list_manipulator::GET_count_bodies()
 {
-    return body.size();
+    return (int)body.size();
 }
 
+double details::Body_list_manipulator::GET_body_position_x(int body_number)
+{
+	return body[body_number].GET_position_x();
+}
+
+double details::Body_list_manipulator::GET_body_position_y(int body_number)
+{
+	return body[body_number].GET_position_y();
+}
+
+double details::Body_list_manipulator::GET_body_position_z(int body_number)
+{
+	return body[body_number].GET_position_z();
+}
+
+double details::Body_list_manipulator::GET_body_boxel_size_x(int body_number)
+{
+	return body[body_number].GET_boxel_size_x();
+}
+
+double details::Body_list_manipulator::GET_body_boxel_size_y(int body_number)
+{
+	return body[body_number].GET_boxel_size_y();
+}
+
+double details::Body_list_manipulator::GET_body_boxel_size_z(int body_number)
+{
+	return body[body_number].GET_boxel_size_z();
+}
 
 
 details::MainWorker::MainWorker()
@@ -345,6 +405,7 @@ void details::Body_list_manipulator::DO_body_boxel_change_energy(int body_number
 {
 	body[body_number].DO_boxel_change_energy(boxel_number_x, boxel_number_y, boxel_number_z, change_energy);
 }
+
 
 
 double details::Body_list_manipulator::c_body::GET_boxel_energy(int boxel_number_x, int boxel_number_y, int boxel_number_z)

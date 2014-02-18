@@ -73,7 +73,76 @@ vector<vector<vector<bool> > > MTL::GET_body_state(int body_number)
 	return result;
 }
 
+double MTL::GET_body_state_solid(int body_number)
+{
+	double resalt;
+	int number_boxel_solid = 0;
+	int body_number_boxels_x = MW->GET_body_list_manipulator()->GET_body_number_boxels_x(body_number);
+	int body_number_boxels_y = MW->GET_body_list_manipulator()->GET_body_number_boxels_y(body_number);
+	int body_number_boxels_z = MW->GET_body_list_manipulator()->GET_body_number_boxels_z(body_number);
+	for (int i = 0; i < body_number_boxels_x; i++)
+	{
+		for (int j = 0; j < body_number_boxels_y; j++)
+		{
+			for (int g = 0; g < body_number_boxels_z; g++)
+			{
+				if (MW->GET_body_list_manipulator()->GET_body_boxel_state(body_number, i, j, g))
+					number_boxel_solid++;
+			}
+		}
+	}
+	resalt = number_boxel_solid / (body_number_boxels_x * body_number_boxels_y *
+		body_number_boxels_z);
+	return resalt;
+}
+
  void MTL::DO_body_refresh_state(int body_number)
  {
 	MTL::details::Thermal_processor::DO_body_refresh_state(body_number);
  }
+
+double MTL::GET_BodyPositionX(int body_number)
+{
+	return MW->GET_body_list_manipulator()->GET_body_position_x(body_number);
+}
+
+double MTL::GET_BodyPositionY(int body_number)
+{
+	return MW->GET_body_list_manipulator()->GET_body_position_y(body_number);
+}
+
+double MTL::GET_BodyPositionZ(int body_number)
+{
+	return MW->GET_body_list_manipulator()->GET_body_position_z(body_number);
+}
+
+int MTL::GET_body_number_boxels_x(int body_number)
+{
+	return MW->GET_body_list_manipulator()->GET_body_number_boxels_x(body_number);
+}
+
+int MTL::GET_body_number_boxels_y(int body_number)
+{
+	return MW->GET_body_list_manipulator()->GET_body_number_boxels_y(body_number);
+}
+
+int MTL::GET_body_number_boxels_z(int body_number)
+{
+	return MW->GET_body_list_manipulator()->GET_body_number_boxels_z(body_number);
+}
+
+double GET_body_boxel_size_x(int body_number)
+{
+	return MW->GET_body_list_manipulator()->GET_body_boxel_size_x(body_number);
+}
+
+double GET_body_boxel_size_y(int body_number)
+{
+	return MW->GET_body_list_manipulator()->GET_body_boxel_size_y(body_number);
+}
+
+double GET_body_boxel_size_z(int body_number)
+{
+	return MW->GET_body_list_manipulator()->GET_body_boxel_size_z(body_number);
+}
+
