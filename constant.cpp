@@ -12,5 +12,5 @@ const double Constants::g_jupiter=             23.5;
 const double Constants::g_uranus=              9.8;
 const double Constants::g_neptune=             13.5;
 const double Constants::g_sun=                 274.0;
-const double Constants::thermal_coefficient_1 = 300.0;
+const double Constants::thermal_coefficient_1 = 3000.0;
 const double Constants::thermal_coefficient_2 = 0.0000001;

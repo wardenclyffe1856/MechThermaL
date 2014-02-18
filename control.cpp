@@ -78,7 +78,7 @@ vector<vector<vector<bool> > > MTL::GET_body_state(int body_number)
 
 double MTL::GET_body_state_solid(int body_number)
 {
-	double resalt;
+	double result;
 	int number_boxel_solid = 0;
 	int body_number_boxels_x = MW->GET_body_list_manipulator()->GET_body_number_boxels_x(body_number);
 	int body_number_boxels_y = MW->GET_body_list_manipulator()->GET_body_number_boxels_y(body_number);
@@ -94,9 +94,9 @@ double MTL::GET_body_state_solid(int body_number)
 			}
 		}
 	}
-	resalt = number_boxel_solid / (body_number_boxels_x * body_number_boxels_y *
+	result = number_boxel_solid / (body_number_boxels_x * body_number_boxels_y *
 		body_number_boxels_z);
-	return resalt;
+	return result;
 }
 
  void MTL::DO_body_refresh_state(int body_number)

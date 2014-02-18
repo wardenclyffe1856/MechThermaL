@@ -32,7 +32,6 @@ namespace MTL
     void DO_Init(void);
 	void DO_LoadSubstances(void);
 	void DO_Test(void);
-<<<<<<< HEAD
     int DO_AddBody(string new_name, double new_position_x, double new_position_y,
 		double new_position_z, double new_size_x, double new_size_y,
 		double new_size_z, string new_substance_name, double new_temperature,
@@ -53,7 +52,7 @@ namespace MTL
     double GET_BodyBoxelSizeX(int body_number);
     double GET_BodyBoxelSizeY(int body_number);
     double GET_BodyBoxelSizeZ(int body_number);
-=======
+
     int DO_AddBody(string new_name, double new_position_x, double new_position_y, double new_position_z,
 	double new_size_x, double new_size_y, double new_size_z, string new_substance_name, double new_temperature,
 	bool new_solid);
@@ -63,7 +62,6 @@ namespace MTL
     int GET_count_bodies();
     vector<vector<vector<bool> > > GET_body_state(int body_number);
     void DO_body_refresh_state(int body_number);
->>>>>>> 09a0a7c339fdc95c21f1e3a924cc2a51c564640e
 }
 
 #endif //_MTL_H_

@@ -13,7 +13,7 @@ using namespace MTL;
 
 extern details::MainWorker* MW;
 
-const double MIN_BOXEL_SIZE =		0.001;		//The minimal size of a boxel (m).
+const double MIN_BOXEL_SIZE =		0.0008;		//The minimal size of a boxel (m).
 
 	//To set a new temperature.
 	void  blmcbx::SET_energy(double new_energy)
