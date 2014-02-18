@@ -66,7 +66,7 @@ vector<vector<vector<bool> > > MTL::GET_body_state(int body_number)
 			result[i][j].resize(body_number_boxels_z);
 			for (int g = 0; g < body_number_boxels_z; g++)
 			{
-				result[i][j].push_back(MW->GET_body_list_manipulator()->GET_body_boxel_state(body_number, i, j, g));
+				result[i][j][g] = (MW->GET_body_list_manipulator()->GET_body_boxel_state(body_number, i, j, g));
 			}
 		}
 	}
