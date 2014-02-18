@@ -9,7 +9,10 @@ MTL::details::MainWorker* MW;
 
 void MTL::DO_test(void)
 {
-	cout << "Test MTL." << endl;
+	if (MW)
+		cout << "MTL loaded successfully!" << endl;
+	else
+		cout << "MTL is not ready now!" << endl;
 }
 
 void MTL::DO_init()

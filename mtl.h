@@ -15,7 +15,7 @@ namespace MTL
     void DO_Init(void);
 	void DO_LoadSubstances(void);
 	void DO_Test(void);
-    int DO_AddBody(string new_name, double new_position_z, double new_position_y, double new_position_x,
+    int DO_AddBody(string new_name, double new_position_x, double new_position_y, double new_position_z,
 	double new_size_x, double new_size_y, double new_size_z, string new_substance_name, double new_temperature,
 	bool new_solid);
     void SET_environment_parameters(string new_substance, double new_temperature);

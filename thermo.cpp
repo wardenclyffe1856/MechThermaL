@@ -2,13 +2,6 @@
 
 extern MTL::details::MainWorker* MW;
 
-//Temporary.
-double abs(double number)
-{
-	return number>=0 ? number : -number;
-}
-
-
 void MTL::details::Thermal_processor::DO_body_interaction_with_environment(int body_number)
 {
     Body_list_manipulator* blm = MW->GET_body_list_manipulator();
